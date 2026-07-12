@@ -30,7 +30,7 @@ export default function App() {
   const [profileOpen, setProfileOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState(3)
   const [page, setPage] = useState('Dashboard')
-  const [assets, setAssets] = useState<any[]>([])
+  const [assets, setAssets] = useState<Asset[]>(initialAssets)
   const [query, setQuery] = useState('')
   const [modal, setModal] = useState<'asset' | 'allocate' | 'maintenance' | null>(null)
   const [notice, setNotice] = useState('')
