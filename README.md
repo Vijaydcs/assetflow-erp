@@ -6,7 +6,8 @@ AssetFlow is a centralized platform for managing organizational assets throughou
 
 ## Screenshots
 
-<img src="assets/dashboard.png" width="100%">
+<img width="1600" height="769" alt="image" src="https://github.com/user-attachments/assets/5711c81d-185b-4530-a0a2-d38bb66c86bd" />
+
 
 <img src="assets/assets.png" width="100%">
 
