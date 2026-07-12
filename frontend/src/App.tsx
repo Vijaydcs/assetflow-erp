@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect } from "react";
+import axios from "axios"
+import { useEffect } from "react"
 
 
 import { useMemo, useState } from 'react'
@@ -40,7 +40,34 @@ export default function App() {
   const allocated = assets.filter(a => a.status === 'Allocated').length
   const maintenance = assets.filter(a => a.status === 'Under Maintenance').length
   const toast = (message: string) => { setNotice(message); setTimeout(() => setNotice(''), 3500) }
+  useEffect(() => {
+  const loadDashboard = async () => {
+    try {
+      const { data } = await axios.get(
+        'http://localhost:8080/api/dashboard'
+      )
 
+      console.log('Dashboard API:', data)
+
+      if (data.assets) {
+        setAssets(data.assets)
+      }
+
+      if (data.recentActivities) {
+        setActivities(
+          data.recentActivities.map((a: any) => a.message)
+        )
+      }
+
+      toast('Dashboard synced with Spring Boot API')
+    } catch (err) {
+      console.error('Dashboard API Error:', err)
+      toast('Backend unavailable. Using demo data.')
+    }
+  }
+
+  loadDashboard()
+}, [])
   function addAsset(e: FormEvent<HTMLFormElement>) {
     e.preventDefault(); const data = new FormData(e.currentTarget)
     const tag = `AF-${String(assets.length + 1).padStart(4, '0')}`
